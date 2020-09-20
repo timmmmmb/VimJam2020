@@ -15,7 +15,7 @@ func start():
 	raise()
 	visited_goal = false
 	rotation = initial_rotation
-	position = $"../Start".position
+	position = $"../StartPosition".position
 	var tilemap = $"../TileMap"
 	tilemap_size = tilemap.get_used_rect() 
 	tilemap_size.end *= tilemap.cell_size
