@@ -7,24 +7,23 @@ enum {
 	WON
 }
 var current_state = INITIAL
-export (Array, NodePath) var eagles = []
 
 func start():
 	current_state = RUNNING
 	$Pigeon.start()
-	for eagle in eagles:
-		get_node(eagle).start()
+	for eagle in get_tree().get_nodes_in_group("Eagle"):
+		eagle.start()
 	$Pigeon.raise()
 
 func _on_Pigeon_lost():
-	for eagle in eagles:
-		get_node(eagle).stop()
+	for eagle in get_tree().get_nodes_in_group("Eagle"):
+		eagle.stop()
 	current_state = LOST
 
 
 func _on_Pigeon_finished():
-	for eagle in eagles:
-		get_node(eagle).stop()
+	for eagle in get_tree().get_nodes_in_group("Eagle"):
+		eagle.stop()
 	current_state = WON
 
 
