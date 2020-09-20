@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Images/Goal.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/Tile.png" type="Texture" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://Scenes/BaseLevelScene.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Goal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Start.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Direction.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Eagle.tscn" type="PackedScene" id=9]
 
 [sub_resource type="TileSet" id=1]
 1/name = "Goal.png 1"
@@ -64,35 +62,17 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 131076, 2, 0, 131077, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 262144, 2, 0, 262145, 2, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0 )
 
-[node name="Start" parent="." instance=ExtResource( 7 )]
+[node name="StartPosition" parent="." instance=ExtResource( 7 )]
 position = Vector2( 16, 80 )
 
 [node name="Goal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 144, 80 )
 
-[node name="Direction" parent="." instance=ExtResource( 8 )]
-position = Vector2( 16, 208 )
-
-[node name="Direction5" parent="." instance=ExtResource( 8 )]
-position = Vector2( 144, 208 )
-
-[node name="Direction2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 48, 208 )
-rotation = -1.5708
-
-[node name="Direction3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 112, 208 )
-rotation = 1.5708
-
-[node name="Direction4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 80, 208 )
-rotation = 3.14159
-
 [node name="Pigeon" parent="." instance=ExtResource( 4 )]
 position = Vector2( 16, 80 )
 rotation = 1.5708
 
-[node name="Start2" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="."]
 margin_left = 40.0
 margin_top = 168.0
 margin_right = 88.0
@@ -102,7 +82,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Reset" type="Button" parent="."]
+[node name="ResetButton" type="Button" parent="."]
 margin_left = 104.0
 margin_top = 168.0
 margin_right = 152.0
@@ -111,10 +91,7 @@ text = "Reset"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Eagle" parent="." instance=ExtResource( 9 )]
-position = Vector2( 80, 144 )
 [connection signal="finished" from="Pigeon" to="." method="_on_Pigeon_finished"]
 [connection signal="lost" from="Pigeon" to="." method="_on_Pigeon_lost"]
-[connection signal="pressed" from="Start2" to="." method="start"]
-[connection signal="pressed" from="Reset" to="." method="_on_Reset_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="start"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_Reset_pressed"]
